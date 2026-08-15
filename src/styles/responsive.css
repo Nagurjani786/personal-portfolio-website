@@ -1,0 +1,488 @@
+/* Responsive Design for All Devices */
+
+/* Global Responsive Styles */
+* {
+  box-sizing: border-box;
+}
+
+/* App Container */
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Main Content Wrapper - accounts for fixed header */
+.main-content {
+  padding-top: 90px; /* Height of fixed header */
+}
+
+/* Mobile Devices (320px - 768px) */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 70px !important; /* Mobile header height */
+  }
+}
+
+/* When header is scrolled (smaller height) */
+@media (max-width: 768px) {
+  .navbar-scrolled + .main-content {
+    padding-top: 60px !important; /* Scrolled mobile header height */
+  }
+}
+
+/* Tablet and Desktop - scrolled header height adjustment */
+@media (min-width: 769px) {
+  .navbar-scrolled + .main-content {
+    padding-top: 75px !important; /* Scrolled desktop header height */
+  }
+}
+
+/* Section Base Styles */
+.section {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Card Base Styles */
+.card {
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 12px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+/* Title Base Styles */
+.title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px !important;
+    margin-bottom: 40px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .title {
+    font-size: 32px !important;
+    margin-bottom: 50px !important;
+  }
+}
+
+/* Mobile Devices (320px - 768px) */
+@media (max-width: 768px) {
+  /* Hero Section */
+  .hero-section {
+    padding: 60px 5% !important;
+    text-align: center !important;
+  }
+  
+  .hero-container {
+    flex-direction: column !important;
+    padding: 0 5% !important;
+    gap: 40px !important;
+    text-align: center !important;
+  }
+  
+  .hero-left {
+    min-width: 100% !important;
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .hero-name {
+    font-size: 2.5rem !important;
+    text-align: center !important;
+  }
+  
+  .hero-role {
+    font-size: 1.3rem !important;
+    text-align: center !important;
+  }
+  
+  .hero-desc {
+    font-size: 1rem !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    justify-content: center !important;
+  }
+  
+  .hero-btn {
+    width: 200px !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  
+  .hero-right {
+    min-width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  .hero-code-card {
+    min-width: 100% !important;
+    padding: 20px !important;
+    font-size: 12px !important;
+    text-align: center !important;
+  }
+  
+  /* Navbar */
+  .navbar {
+    padding: 0 5% !important;
+    height: 70px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+  
+  .navbar-scrolled {
+    height: 60px !important;
+  }
+  
+  .navbar-menu {
+    display: none !important;
+  }
+  
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  
+  .name-container {
+    display: none !important;
+  }
+  
+  .logo-container {
+    gap: 12px !important;
+    justify-content: flex-start !important;
+  }
+  
+  .logo-wrapper {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .logo-inner {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 16px !important;
+  }
+  
+  /* About Section */
+  .about-section {
+    padding: 60px 5% !important;
+    text-align: center !important;
+  }
+  
+  .about-title {
+    font-size: 28px !important;
+    margin-bottom: 40px !important;
+    text-align: center !important;
+  }
+  
+  .about-container {
+    flex-direction: column !important;
+    gap: 30px !important;
+    align-items: center !important;
+  }
+  
+  .about-card {
+    min-width: 100% !important;
+    padding: 20px !important;
+    text-align: center !important;
+  }
+  
+  /* Skills Section */
+  .skills-section {
+    padding: 60px 5% !important;
+    text-align: center !important;
+  }
+  
+  .skills-title {
+    font-size: 28px !important;
+    margin-bottom: 40px !important;
+    text-align: center !important;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 20px !important;
+    justify-content: center !important;
+  }
+  
+  .skill-card {
+    padding: 20px !important;
+    text-align: center !important;
+  }
+  
+  /* Projects Section */
+  .projects-section {
+    padding: 60px 5% !important;
+    text-align: center !important;
+  }
+  
+  .projects-title {
+    font-size: 28px !important;
+    margin-bottom: 40px !important;
+    text-align: center !important;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    justify-content: center !important;
+  }
+  
+  .project-card {
+    padding: 20px !important;
+    text-align: center !important;
+  }
+  
+  /* Resume Section */
+  .resume-section {
+    padding: 60px 5% !important;
+    text-align: center !important;
+  }
+  
+  .resume-title {
+    font-size: 28px !important;
+    margin-bottom: 40px !important;
+    text-align: center !important;
+  }
+  
+  .resume-container {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    justify-content: center !important;
+  }
+  
+  .resume-card {
+    min-width: 100% !important;
+    padding: 20px !important;
+    text-align: center !important;
+  }
+  
+  /* Contact Section */
+  .contact-section {
+    padding: 60px 5% !important;
+    text-align: center !important;
+  }
+  
+  .contact-title {
+    font-size: 28px !important;
+    margin-bottom: 40px !important;
+    text-align: center !important;
+  }
+  
+  .contact-container {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    justify-content: center !important;
+  }
+  
+  .contact-form {
+    padding: 20px !important;
+    text-align: center !important;
+  }
+  
+  .contact-info {
+    padding: 20px !important;
+    text-align: center !important;
+  }
+}
+
+/* Tablet Devices (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Hero Section */
+  .hero-section {
+    padding: 80px 7% !important;
+  }
+  
+  .hero-container {
+    padding: 0 7% !important;
+    gap: 50px !important;
+  }
+  
+  .hero-name {
+    font-size: 3rem !important;
+  }
+  
+  .hero-role {
+    font-size: 1.5rem !important;
+  }
+  
+  .hero-code-card {
+    min-width: 350px !important;
+    padding: 25px !important;
+  }
+  
+  /* Navbar */
+  .navbar {
+    padding: 0 7% !important;
+  }
+  
+  .navbar-menu {
+    gap: 6px !important;
+    padding: 6px 12px !important;
+  }
+  
+  .navbar-link {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+  }
+  
+  /* About Section */
+  .about-section {
+    padding: 80px 7% !important;
+  }
+  
+  .about-title {
+    font-size: 32px !important;
+  }
+  
+  /* Skills Section */
+  .skills-section {
+    padding: 80px 7% !important;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+  
+  /* Projects Section */
+  .projects-section {
+    padding: 80px 7% !important;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  }
+  
+  /* Resume Section */
+  .resume-section {
+    padding: 80px 7% !important;
+  }
+  
+  /* Contact Section */
+  .contact-section {
+    padding: 80px 7% !important;
+  }
+  
+  .contact-container {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+/* Large Desktop Devices (1025px and above) */
+@media (min-width: 1025px) {
+  /* Ensure proper scaling on large screens */
+  .hero-container {
+    max-width: 1400px !important;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+  }
+}
+
+/* Small Mobile Devices (320px - 480px) */
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 2rem !important;
+  }
+  
+  .hero-role {
+    font-size: 1.1rem !important;
+  }
+  
+  .hero-desc {
+    font-size: 0.9rem !important;
+  }
+  
+  .hero-btn {
+    width: 180px !important;
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+  }
+  
+  .about-title,
+  .skills-title,
+  .projects-title,
+  .resume-title,
+  .contact-title {
+    font-size: 24px !important;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .project-tools {
+    font-size: 11px !important;
+  }
+}
+
+/* Landscape Mobile (480px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
+  .hero-container {
+    flex-direction: row !important;
+    padding: 0 5% !important;
+  }
+  
+  .hero-left {
+    flex: 1.2 !important;
+  }
+  
+  .hero-right {
+    flex: 0.8 !important;
+  }
+  
+  .hero-code-card {
+    min-width: 300px !important;
+  }
+}
+
+/* High DPI/Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-code-card,
+  .about-card,
+  .skill-card,
+  .project-card,
+  .resume-card,
+  .contact-form,
+  .contact-info {
+    border-width: 0.5px !important;
+  }
+}

@@ -1,365 +1,1069 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Hero() {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const [hoverPrimary, setHoverPrimary] = useState(false);
+  const [hoverSecondary, setHoverSecondary] = useState(false);
+  const [hoverGithub, setHoverGithub] = useState(false);
+  const [hoverLinkedin, setHoverLinkedin] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const isMobile = screenWidth <= 600;
+  const isTablet = screenWidth > 600 && screenWidth <= 900;
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
-    <section style={sectionStyle} className="fade-in-up">
-      <div style={containerStyle}>
-        
-        {/* LEFT SIDE CONTENT */}
-        <div style={leftStyle} className="fade-in-left">
-          <div style={greetingStyle}>
-            <span style={emojiStyle}>👋</span>
-            <span style={greetingTextStyle}>Hi, I'm</span>
+    <section
+      id="home"
+      style={{
+        width: "100%",
+        minHeight: isMobile
+          ? "calc(100vh - 75px)"
+          : "calc(100vh - 110px)",
+
+        boxSizing: "border-box",
+
+        background:
+          "linear-gradient(135deg, #020617 0%, #0B1224 45%, #020617 100%)",
+
+        display: "flex",
+        alignItems: "center",
+
+        position: "relative",
+
+        overflow: "hidden",
+
+        /* IMPORTANT:
+           No large top padding.
+           This removes the gap below navbar.
+        */
+        padding: isMobile
+          ? "50px 18px"
+          : isTablet
+          ? "60px 35px"
+          : "55px 7%",
+      }}
+    >
+      {/* =====================================================
+          BACKGROUND GLOW - TOP LEFT
+      ===================================================== */}
+
+      <div
+        style={{
+          position: "absolute",
+
+          width: isMobile ? "220px" : "420px",
+          height: isMobile ? "220px" : "420px",
+
+          top: "-180px",
+          left: "-150px",
+
+          borderRadius: "50%",
+
+          background:
+            "radial-gradient(circle, rgba(37,99,235,0.22), transparent 70%)",
+
+          filter: "blur(5px)",
+
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* =====================================================
+          BACKGROUND GLOW - BOTTOM RIGHT
+      ===================================================== */}
+
+      <div
+        style={{
+          position: "absolute",
+
+          width: isMobile ? "250px" : "450px",
+          height: isMobile ? "250px" : "450px",
+
+          bottom: "-200px",
+          right: "-150px",
+
+          borderRadius: "50%",
+
+          background:
+            "radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%)",
+
+          filter: "blur(5px)",
+
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* =====================================================
+          SMALL BLUE LIGHT
+      ===================================================== */}
+
+      <div
+        style={{
+          position: "absolute",
+
+          width: "5px",
+          height: "5px",
+
+          top: "25%",
+          left: "8%",
+
+          borderRadius: "50%",
+
+          background: "#38BDF8",
+
+          boxShadow:
+            "0 0 15px #38BDF8, 0 0 30px rgba(56,189,248,0.6)",
+
+          animation: "pulse 2s infinite",
+
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* =====================================================
+          MAIN CONTAINER
+      ===================================================== */}
+
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1250px",
+
+          margin: "0 auto",
+
+          display: "grid",
+
+          gridTemplateColumns:
+            isMobile || isTablet
+              ? "1fr"
+              : "1.05fr 0.95fr",
+
+          alignItems: "center",
+
+          gap: isMobile
+            ? "55px"
+            : isTablet
+            ? "65px"
+            : "75px",
+
+          position: "relative",
+
+          zIndex: 2,
+        }}
+      >
+        {/* =====================================================
+            LEFT SIDE
+        ===================================================== */}
+
+        <div
+          style={{
+            width: "100%",
+
+            textAlign: isMobile
+              ? "center"
+              : "left",
+          }}
+        >
+          {/* GREETING */}
+
+          <div
+            style={{
+              display: "flex",
+
+              alignItems: "center",
+
+              justifyContent: isMobile
+                ? "center"
+                : "flex-start",
+
+              gap: "10px",
+
+              marginBottom: "14px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: isMobile
+                  ? "22px"
+                  : "28px",
+
+                animation:
+                  "wave 2s ease-in-out infinite",
+
+                display: "inline-block",
+              }}
+            >
+              👋
+            </span>
+
+            <span
+              style={{
+                fontSize: isMobile
+                  ? "15px"
+                  : "18px",
+
+                color: "#94A3B8",
+
+                fontWeight: "500",
+              }}
+            >
+              Hi, I'm
+            </span>
           </div>
-          
-          <h1 style={nameStyle}>
+
+          {/* =====================================================
+              NAME
+          ===================================================== */}
+
+          <h1
+            style={{
+              margin: "0 0 16px",
+
+              fontSize: isMobile
+                ? "2.35rem"
+                : isTablet
+                ? "3.3rem"
+                : "4.3rem",
+
+              fontWeight: "900",
+
+              lineHeight: "1.08",
+
+              letterSpacing: "-2px",
+
+              background:
+                "linear-gradient(135deg, #38BDF8 0%, #3B82F6 45%, #8B5CF6 100%)",
+
+              WebkitBackgroundClip: "text",
+
+              WebkitTextFillColor: "transparent",
+
+              backgroundClip: "text",
+
+              textShadow:
+                "0 0 30px rgba(59,130,246,0.12)",
+            }}
+          >
             Nagur Jani Shaik
           </h1>
 
-          <div style={roleContainer}>
-            <h2 style={roleStyle}>
-              Full Stack Developer
+          {/* =====================================================
+              ROLE
+          ===================================================== */}
+
+          <div
+            style={{
+              display: "flex",
+
+              alignItems: "center",
+
+              justifyContent: isMobile
+                ? "center"
+                : "flex-start",
+
+              gap: "12px",
+
+              marginBottom: "20px",
+
+              flexWrap: "wrap",
+            }}
+          >
+            <h2
+              style={{
+                margin: 0,
+
+                color: "#E2E8F0",
+
+                fontSize: isMobile
+                  ? "1.25rem"
+                  : isTablet
+                  ? "1.55rem"
+                  : "1.85rem",
+
+                fontWeight: "600",
+              }}
+            >
+              Java Full Stack Developer
             </h2>
-            <div style={typingIndicator}>
-              <span style={typingIndicatorSpan}></span>
-              <span style={{...typingIndicatorSpan, ...typingIndicatorSpan1}}></span>
-              <span style={{...typingIndicatorSpan, ...typingIndicatorSpan2}}></span>
+
+            {/* ANIMATED BARS */}
+
+            <div
+              style={{
+                display: "flex",
+
+                gap: "4px",
+
+                alignItems: "flex-end",
+
+                height: "22px",
+              }}
+            >
+              <span
+                style={{
+                  width: "4px",
+                  height: "17px",
+
+                  background: "#3B82F6",
+
+                  borderRadius: "2px",
+
+                  animation:
+                    "barPulse 1.3s infinite",
+                }}
+              />
+
+              <span
+                style={{
+                  width: "4px",
+                  height: "12px",
+
+                  background: "#8B5CF6",
+
+                  borderRadius: "2px",
+
+                  animation:
+                    "barPulse 1.3s infinite",
+
+                  animationDelay: "0.2s",
+                }}
+              />
+
+              <span
+                style={{
+                  width: "4px",
+                  height: "20px",
+
+                  background: "#06B6D4",
+
+                  borderRadius: "2px",
+
+                  animation:
+                    "barPulse 1.3s infinite",
+
+                  animationDelay: "0.4s",
+                }}
+              />
             </div>
           </div>
 
-          <p style={descStyle}>
-            Passionate about crafting scalable web applications with clean architecture, 
-            modern technologies, and innovative user experiences that make a difference.
+          {/* =====================================================
+              DESCRIPTION
+          ===================================================== */}
+
+          <p
+            style={{
+              maxWidth: "650px",
+
+              margin: isMobile
+                ? "0 auto 28px"
+                : "0 0 28px",
+
+              color: "#94A3B8",
+
+              fontSize: isMobile
+                ? "14px"
+                : "16px",
+
+              lineHeight: "1.8",
+            }}
+          >
+            Java Full Stack Developer with hands-on experience in
+            Java, Hibernate/JPA, SQL, JavaScript, React, HTML and
+            CSS. Passionate about building responsive web
+            applications and solving real-world problems through
+            clean and efficient code.
           </p>
 
-          <div style={buttonContainer}>
-            <button style={btnPrimary} className="btn-primary">
+          {/* =====================================================
+              BUTTONS
+          ===================================================== */}
+
+          <div
+            style={{
+              display: "flex",
+
+              justifyContent: isMobile
+                ? "center"
+                : "flex-start",
+
+              alignItems: "center",
+
+              gap: "14px",
+
+              marginBottom: "30px",
+
+              flexWrap: "wrap",
+            }}
+          >
+            {/* VIEW PROJECTS BUTTON */}
+
+            <button
+              onClick={() =>
+                scrollToSection("projects")
+              }
+              onMouseEnter={() =>
+                setHoverPrimary(true)
+              }
+              onMouseLeave={() =>
+                setHoverPrimary(false)
+              }
+              style={{
+                background:
+                  "linear-gradient(135deg, #2563EB, #7C3AED)",
+
+                color: "#FFFFFF",
+
+                padding: isMobile
+                  ? "12px 20px"
+                  : "14px 25px",
+
+                border: "1px solid rgba(96,165,250,0.4)",
+
+                borderRadius: "10px",
+
+                cursor: "pointer",
+
+                fontWeight: "700",
+
+                fontSize: isMobile
+                  ? "13px"
+                  : "15px",
+
+                display: "flex",
+
+                alignItems: "center",
+
+                justifyContent: "center",
+
+                gap: "8px",
+
+                boxShadow: hoverPrimary
+                  ? "0 0 18px rgba(59,130,246,0.65), 0 10px 35px rgba(59,130,246,0.45)"
+                  : "0 0 10px rgba(59,130,246,0.35), 0 5px 20px rgba(59,130,246,0.25)",
+
+                transform: hoverPrimary
+                  ? "translateY(-4px)"
+                  : "translateY(0)",
+
+                transition:
+                  "all 0.3s ease",
+              }}
+            >
               <span>View My Work</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-              </svg>
+              <span>↗</span>
             </button>
-            <button style={btnSecondary} className="btn-secondary">
+
+            {/* CONTACT BUTTON */}
+
+            <button
+              onClick={() =>
+                scrollToSection("contact")
+              }
+              onMouseEnter={() =>
+                setHoverSecondary(true)
+              }
+              onMouseLeave={() =>
+                setHoverSecondary(false)
+              }
+              style={{
+                background: hoverSecondary
+                  ? "rgba(37,99,235,0.12)"
+                  : "rgba(15,23,42,0.5)",
+
+                color: "#E2E8F0",
+
+                padding: isMobile
+                  ? "11px 20px"
+                  : "13px 25px",
+
+                border:
+                  "1px solid rgba(59,130,246,0.45)",
+
+                borderRadius: "10px",
+
+                cursor: "pointer",
+
+                fontWeight: "700",
+
+                fontSize: isMobile
+                  ? "13px"
+                  : "15px",
+
+                display: "flex",
+
+                alignItems: "center",
+
+                justifyContent: "center",
+
+                gap: "8px",
+
+                boxShadow: hoverSecondary
+                  ? "0 0 20px rgba(59,130,246,0.55), 0 8px 28px rgba(59,130,246,0.25)"
+                  : "0 0 8px rgba(59,130,246,0.25)",
+
+                transform: hoverSecondary
+                  ? "translateY(-4px)"
+                  : "translateY(0)",
+
+                transition:
+                  "all 0.3s ease",
+              }}
+            >
               <span>Get In Touch</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/>
-              </svg>
+              <span>✈</span>
             </button>
           </div>
 
-          {/* Social Links */}
-          <div style={socialContainer}>
-            <a href="https://github.com/Nagurjani786" target="_blank" rel="noopener noreferrer" style={socialLink}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          {/* =====================================================
+              SOCIAL LINKS
+          ===================================================== */}
+
+          <div
+            style={{
+              display: "flex",
+
+              justifyContent: isMobile
+                ? "center"
+                : "flex-start",
+
+              gap: "12px",
+            }}
+          >
+            {/* GITHUB */}
+
+            <a
+              href="https://github.com/Nagurjani786"
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() =>
+                setHoverGithub(true)
+              }
+              onMouseLeave={() =>
+                setHoverGithub(false)
+              }
+              style={{
+                width: "44px",
+                height: "44px",
+
+                borderRadius: "50%",
+
+                background: hoverGithub
+                  ? "#172554"
+                  : "rgba(15,23,42,0.75)",
+
+                border:
+                  "1px solid rgba(59,130,246,0.45)",
+
+                display: "flex",
+
+                alignItems: "center",
+
+                justifyContent: "center",
+
+                color: hoverGithub
+                  ? "#60A5FA"
+                  : "#94A3B8",
+
+                textDecoration: "none",
+
+                transition:
+                  "all 0.3s ease",
+
+                transform: hoverGithub
+                  ? "translateY(-5px)"
+                  : "translateY(0)",
+
+                boxShadow: hoverGithub
+                  ? "0 0 20px rgba(59,130,246,0.65), 0 8px 25px rgba(59,130,246,0.3)"
+                  : "0 0 8px rgba(59,130,246,0.2)",
+              }}
+              title="GitHub"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.05.14 3.01.4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z" />
               </svg>
             </a>
-            <a href="https://www.linkedin.com/in/shaik-nagur-jani-76212b318/" target="_blank" rel="noopener noreferrer" style={socialLink}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+
+            {/* LINKEDIN */}
+
+            <a
+              href="https://www.linkedin.com/in/shaik-nagur-jani-76212b318/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() =>
+                setHoverLinkedin(true)
+              }
+              onMouseLeave={() =>
+                setHoverLinkedin(false)
+              }
+              style={{
+                width: "44px",
+                height: "44px",
+
+                borderRadius: "50%",
+
+                background: hoverLinkedin
+                  ? "#172554"
+                  : "rgba(15,23,42,0.75)",
+
+                border:
+                  "1px solid rgba(59,130,246,0.45)",
+
+                display: "flex",
+
+                alignItems: "center",
+
+                justifyContent: "center",
+
+                color: hoverLinkedin
+                  ? "#60A5FA"
+                  : "#94A3B8",
+
+                textDecoration: "none",
+
+                transition:
+                  "all 0.3s ease",
+
+                transform: hoverLinkedin
+                  ? "translateY(-5px)"
+                  : "translateY(0)",
+
+                boxShadow: hoverLinkedin
+                  ? "0 0 20px rgba(59,130,246,0.65), 0 8px 25px rgba(59,130,246,0.3)"
+                  : "0 0 8px rgba(59,130,246,0.2)",
+              }}
+              title="LinkedIn"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 2.06-2.06 2.06.92 2.06 2.06-.92 2.06-2.06 2.06zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.23 0z" />
               </svg>
             </a>
           </div>
         </div>
 
-        {/* RIGHT SIDE CODE CARD */}
-        <div style={rightStyle} className="fade-in-right">
-          <div style={codeCard} className="float">
-            <div style={codeHeader}>
-              <div style={codeDots}>
-                <span style={{...dot, background: "#FF5F56"}}></span>
-                <span style={{...dot, background: "#FFBD2E"}}></span>
-                <span style={{...dot, background: "#27C93F"}}></span>
+        {/* =====================================================
+            RIGHT SIDE
+        ===================================================== */}
+
+        <div
+          style={{
+            width: "100%",
+
+            display: "flex",
+
+            justifyContent: "center",
+
+            alignItems: "center",
+
+            position: "relative",
+          }}
+        >
+          {/* =====================================================
+              CODE CARD
+          ===================================================== */}
+
+          <div
+            style={{
+              width: "100%",
+
+              maxWidth: "500px",
+
+              boxSizing: "border-box",
+
+              background:
+                "linear-gradient(145deg, rgba(15,23,42,0.95), rgba(8,15,30,0.92))",
+
+              backdropFilter: "blur(20px)",
+
+              padding: isMobile
+                ? "20px"
+                : "28px",
+
+              borderRadius: "20px",
+
+              color: "#E2E8F0",
+
+              fontFamily:
+                "'Fira Code', 'Courier New', monospace",
+
+              boxShadow:
+                "0 0 30px rgba(59,130,246,0.12), 0 25px 60px rgba(0,0,0,0.5)",
+
+              border:
+                "1px solid rgba(59,130,246,0.28)",
+
+              position: "relative",
+
+              zIndex: 2,
+            }}
+          >
+            {/* CODE HEADER */}
+
+            <div
+              style={{
+                display: "flex",
+
+                alignItems: "center",
+
+                justifyContent: "space-between",
+
+                marginBottom: "20px",
+
+                paddingBottom: "15px",
+
+                borderBottom:
+                  "1px solid rgba(59,130,246,0.18)",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  gap: "7px",
+                }}
+              >
+                <span
+                  style={{
+                    width: "11px",
+                    height: "11px",
+
+                    borderRadius: "50%",
+
+                    background: "#FF5F56",
+                  }}
+                />
+
+                <span
+                  style={{
+                    width: "11px",
+                    height: "11px",
+
+                    borderRadius: "50%",
+
+                    background: "#FFBD2E",
+                  }}
+                />
+
+                <span
+                  style={{
+                    width: "11px",
+                    height: "11px",
+
+                    borderRadius: "50%",
+
+                    background: "#27C93F",
+                  }}
+                />
               </div>
-              <span style={codeTitle}>developer.js</span>
+
+              <span
+                style={{
+                  color: "#64748B",
+
+                  fontSize: "12px",
+                }}
+              >
+                developer.js
+              </span>
             </div>
-            <div style={codeContent}>
-              <p style={{ color: "#F472B6", margin: "0 0 8px 0" }}>const</p>
-              <p style={{ margin: "0 0 16px 0" }}>
-                <span style={{ color: "#22D3EE" }}>developer</span> = 
-                <span style={{ color: "#FACC15" }}> "Nagur Jani Shaik"</span>
+
+            {/* CODE */}
+
+            <div
+              style={{
+                fontSize: isMobile
+                  ? "11px"
+                  : "14px",
+
+                lineHeight: "1.8",
+
+                overflowX: "auto",
+              }}
+            >
+              <p
+                style={{
+                  color: "#F472B6",
+                  margin: "0 0 7px",
+                }}
+              >
+                const
               </p>
-              <p style={{ color: "#F472B6", margin: "0 0 8px 0" }}>function</p>
-              <p style={{ margin: "0 0 8px 0" }}>
-                <span style={{ color: "#22D3EE" }}>buildScalableApps</span>() {"{"}
+
+              <p
+                style={{
+                  margin: "0 0 15px",
+
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#22D3EE",
+                  }}
+                >
+                  developer
+                </span>{" "}
+                ={" "}
+                <span
+                  style={{
+                    color: "#FACC15",
+                  }}
+                >
+                  "Nagur Jani Shaik"
+                </span>
               </p>
-              <p style={{ color: "#94A3B8", marginLeft: "20px", margin: "0 0 8px 0" }}>
-                // Engineering the future
+
+              <p
+                style={{
+                  color: "#F472B6",
+                  margin: "0 0 7px",
+                }}
+              >
+                function
               </p>
-              <p style={{ color: "#94A3B8", marginLeft: "20px", margin: "0 0 8px 0" }}>
-                // One line at a time
+
+              <p
+                style={{
+                  margin: "0 0 7px",
+
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#22D3EE",
+                  }}
+                >
+                  buildFullStackApps
+                </span>
+                () {"{"}
               </p>
-              <p style={{ color: "#10B981", marginLeft: "20px", margin: "0 0 8px 0" }}>
-                return <span style={{ color: "#FACC15" }}>success</span>;
+
+              <p
+                style={{
+                  color: "#94A3B8",
+
+                  margin: "0 0 7px 20px",
+                }}
+              >
+                // Java + React + SQL
               </p>
-              <p>{"}"}</p>
+
+              <p
+                style={{
+                  color: "#94A3B8",
+
+                  margin: "0 0 7px 20px",
+                }}
+              >
+                // Building scalable solutions
+              </p>
+
+              <p
+                style={{
+                  color: "#10B981",
+
+                  margin: "0 0 7px 20px",
+
+                  whiteSpace: "nowrap",
+                }}
+              >
+                return{" "}
+                <span
+                  style={{
+                    color: "#FACC15",
+                  }}
+                >
+                  success
+                </span>
+                ;
+              </p>
+
+              <p
+                style={{
+                  margin: 0,
+                }}
+              >
+                {"}"}
+              </p>
             </div>
           </div>
 
-          {/* Floating Elements */}
-          <div style={floatingElement1} className="float"></div>
-          <div style={floatingElement2} className="float"></div>
-          <div style={floatingElement3} className="float"></div>
-        </div>
+          {/* =====================================================
+              FLOATING CIRCLE 1
+          ===================================================== */}
 
+          <div
+            style={{
+              position: "absolute",
+
+              top: "5%",
+              right: "3%",
+
+              width: isMobile
+                ? "45px"
+                : "65px",
+
+              height: isMobile
+                ? "45px"
+                : "65px",
+
+              background:
+                "linear-gradient(135deg,#3B82F6,#8B5CF6)",
+
+              borderRadius: "50%",
+
+              opacity: 0.12,
+
+              animation:
+                "float 4s ease-in-out infinite",
+
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* =====================================================
+              FLOATING CIRCLE 2
+          ===================================================== */}
+
+          <div
+            style={{
+              position: "absolute",
+
+              bottom: "8%",
+              left: "2%",
+
+              width: isMobile
+                ? "35px"
+                : "50px",
+
+              height: isMobile
+                ? "35px"
+                : "50px",
+
+              background:
+                "linear-gradient(135deg,#06B6D4,#10B981)",
+
+              borderRadius: "50%",
+
+              opacity: 0.12,
+
+              animation:
+                "float 5s ease-in-out infinite",
+
+              animationDelay: "1s",
+
+              pointerEvents: "none",
+            }}
+          />
+        </div>
       </div>
+
+      {/* =====================================================
+          ANIMATIONS
+      ===================================================== */}
+
+      <style>
+        {`
+          @keyframes pulse {
+            0%, 100% {
+              opacity: 1;
+              transform: scale(1);
+            }
+
+            50% {
+              opacity: 0.6;
+              transform: scale(1.08);
+            }
+          }
+
+          @keyframes wave {
+            0%, 100% {
+              transform: rotate(0deg);
+            }
+
+            25% {
+              transform: rotate(12deg);
+            }
+
+            50% {
+              transform: rotate(-8deg);
+            }
+
+            75% {
+              transform: rotate(10deg);
+            }
+          }
+
+          @keyframes barPulse {
+            0%, 100% {
+              transform: scaleY(1);
+              opacity: 1;
+            }
+
+            50% {
+              transform: scaleY(0.55);
+              opacity: 0.6;
+            }
+          }
+
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0);
+            }
+
+            50% {
+              transform: translateY(-15px);
+            }
+          }
+
+          button,
+          a {
+            -webkit-tap-highlight-color: transparent;
+          }
+
+          button:focus-visible,
+          a:focus-visible {
+            outline: 2px solid #38BDF8;
+            outline-offset: 4px;
+          }
+        `}
+      </style>
     </section>
   );
 }
 
 export default Hero;
-
-/* ================= PROFESSIONAL STYLES ================= */
-
-const sectionStyle = {
-  minHeight: "100vh",
-  background: "linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)",
-  display: "flex",
-  alignItems: "center",
-  padding: "0 10%",
-  position: "relative",
-  overflow: "hidden",
-};
-
-const containerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  width: "100%",
-  flexWrap: "wrap",
-  gap: "60px",
-  maxWidth: "1400px",
-  margin: "0 auto",
-};
-
-const leftStyle = {
-  flex: 1,
-  minWidth: "350px",
-  zIndex: 2,
-};
-
-const greetingStyle = {
-  display: "flex",
-  alignItems: "center",
-  gap: "12px",
-  marginBottom: "16px",
-};
-
-const emojiStyle = {
-  fontSize: "28px",
-  animation: "pulse 2s infinite",
-};
-
-const greetingTextStyle = {
-  fontSize: "18px",
-  color: "#94A3B8",
-  fontWeight: "500",
-};
-
-const nameStyle = {
-  fontSize: "4rem",
-  fontWeight: "900",
-  background: "linear-gradient(135deg, #3B82F6, #8B5CF6, #06B6D4)",
-  backgroundSize: "200% 200%",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-  animation: "gradientShift 3s ease infinite",
-  lineHeight: "1.1",
-  marginBottom: "16px",
-};
-
-const roleContainer = {
-  display: "flex",
-  alignItems: "center",
-  gap: "12px",
-  marginBottom: "24px",
-};
-
-const roleStyle = {
-  fontSize: "1.8rem",
-  color: "#E2E8F0",
-  fontWeight: "600",
-};
-
-const typingIndicator = {
-  display: "flex",
-  gap: "4px",
-  alignItems: "flex-end",
-};
-
-const typingIndicatorSpan = {
-  width: "4px",
-  height: "20px",
-  background: "#3B82F6",
-  borderRadius: "2px",
-  animation: "pulse 1.4s infinite ease-in-out",
-};
-
-const typingIndicatorSpan1 = {
-  animationDelay: "0s",
-};
-
-const typingIndicatorSpan2 = {
-  animationDelay: "0.2s",
-};
-
-const typingIndicatorSpan3 = {
-  animationDelay: "0.4s",
-};
-
-const descStyle = {
-  fontSize: "1.1rem",
-  maxWidth: "550px",
-  color: "#94A3B8",
-  lineHeight: "1.7",
-  marginBottom: "32px",
-};
-
-const buttonContainer = {
-  display: "flex",
-  gap: "16px",
-  marginBottom: "40px",
-  flexWrap: "wrap",
-};
-
-const btnPrimary = {
-  background: "linear-gradient(135deg, #3B82F6, #8B5CF6)",
-  color: "white",
-  padding: "14px 32px",
-  border: "none",
-  borderRadius: "12px",
-  cursor: "pointer",
-  fontWeight: "600",
-  fontSize: "16px",
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  transition: "all 0.3s ease",
-  boxShadow: "0 4px 20px rgba(59, 130, 246, 0.3)",
-  position: "relative",
-  overflow: "hidden",
-};
-
-const btnSecondary = {
-  background: "transparent",
-  color: "#E2E8F0",
-  padding: "14px 32px",
-  border: "2px solid #334155",
-  borderRadius: "12px",
-  cursor: "pointer",
-  fontWeight: "600",
-  fontSize: "16px",
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  transition: "all 0.3s ease",
-};
-
-const socialContainer = {
-  display: "flex",
-  gap: "16px",
-};
-
-const socialLink = {
-  width: "44px",
-  height: "44px",
-  borderRadius: "50%",
-  background: "rgba(30, 41, 59, 0.8)",
-  border: "1px solid #334155",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "#94A3B8",
-  textDecoration: "none",
-  transition: "all 0.3s ease",
-};
-
-const rightStyle = {
-  flex: 1,
-  minWidth: "350px",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  position: "relative",
-};
-
-const codeCard = {
-  background: "rgba(15, 23, 42, 0.9)",
-  backdropFilter: "blur(20px)",
-  padding: "32px",
-  borderRadius: "20px",
-  color: "#E2E8F0",
-  fontFamily: "'Fira Code', 'Courier New', monospace",
-  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.4)",
-  border: "1px solid rgba(59, 130, 246, 0.2)",
-  position: "relative",
-  zIndex: 2,
-  minWidth: "400px",
-};
-
-const codeHeader = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: "24px",
-  paddingBottom: "16px",
-  borderBottom: "1px solid #334155",
-};
-
-const codeDots = {
-  display: "flex",
-  gap: "8px",
-};
-
-const dot = {
-  width: "12px",
-  height: "12px",
-  borderRadius: "50%",
-};
-
-const codeTitle = {
-  color: "#94A3B8",
-  fontSize: "14px",
-};
-
-const codeContent = {
-  fontSize: "14px",
-  lineHeight: "1.6",
-};
-
-const floatingElement1 = {
-  position: "absolute",
-  top: "20%",
-  right: "10%",
-  width: "60px",
-  height: "60px",
-  background: "linear-gradient(135deg, #3B82F6, #8B5CF6)",
-  borderRadius: "50%",
-  opacity: 0.1,
-  animationDelay: "0s",
-};
-
-const floatingElement2 = {
-  position: "absolute",
-  top: "60%",
-  right: "20%",
-  width: "40px",
-  height: "40px",
-  background: "linear-gradient(135deg, #06B6D4, #10B981)",
-  borderRadius: "50%",
-  opacity: 0.1,
-  animationDelay: "1s",
-};
-
-const floatingElement3 = {
-  position: "absolute",
-  bottom: "30%",
-  right: "5%",
-  width: "80px",
-  height: "80px",
-  background: "linear-gradient(135deg, #F59E0B, #EF4444)",
-  borderRadius: "50%",
-  opacity: 0.1,
-  animationDelay: "2s",
-};

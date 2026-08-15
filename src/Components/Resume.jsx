@@ -1,6 +1,9 @@
 import React from "react";
 
 function Resume() {
+  const resumeLink =
+    "https://drive.google.com/uc?export=download&id=1DSko85B6nHFcATy3AIapMDsYsZcU1gha";
+
   return (
     <section
       id="resume"
@@ -8,7 +11,9 @@ function Resume() {
         padding: "100px 20px",
         scrollMarginTop: "80px",
       }}
+      className="resume-section"
     >
+      {/* TITLE */}
       <h2
         style={{
           textAlign: "center",
@@ -16,10 +21,12 @@ function Resume() {
           marginBottom: "40px",
           color: "#3B82F6",
         }}
+        className="resume-title"
       >
         Resume
       </h2>
 
+      {/* RESUME CONTAINER */}
       <div
         style={{
           display: "grid",
@@ -28,6 +35,7 @@ function Resume() {
           maxWidth: "1000px",
           margin: "0 auto",
         }}
+        className="resume-container"
       >
         {/* LEFT CARD */}
         <div
@@ -37,27 +45,46 @@ function Resume() {
             padding: "25px",
             boxShadow: "0 0 20px rgba(59,130,246,0.2)",
           }}
+          className="resume-card"
         >
-          <h3 style={{ color: "#3B82F6", marginBottom: "10px" }}>
+          <h3
+            style={{
+              color: "#3B82F6",
+              marginBottom: "10px",
+            }}
+          >
             Download Resume
           </h3>
 
-          <p style={{ color: "#cbd5f5", fontSize: "14px", marginBottom: "20px" }}>
-            Get a complete overview of my experience, skills, and achievements.
+          <p
+            style={{
+              color: "#cbd5f5",
+              fontSize: "14px",
+              marginBottom: "20px",
+              lineHeight: "1.6",
+            }}
+          >
+            Get a complete overview of my education, technical skills,
+            projects, internship experience, and achievements.
           </p>
 
+          {/* DOWNLOAD BUTTON */}
           <a
-            href="/resume.pdf"   // put your resume file in public folder
-            download
+            href={resumeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Nagur_Jani_Resume.pdf"
             style={{
               display: "inline-block",
               padding: "12px 20px",
               borderRadius: "10px",
-              background: "linear-gradient(135deg, #3B82F6, #2563EB)",
+              background:
+                "linear-gradient(135deg, #3B82F6, #2563EB)",
               color: "white",
               textDecoration: "none",
               fontWeight: "bold",
               boxShadow: "0 0 15px rgba(59,130,246,0.6)",
+              transition: "0.3s",
             }}
           >
             📄 Download PDF
@@ -72,8 +99,14 @@ function Resume() {
             padding: "25px",
             boxShadow: "0 0 20px rgba(59,130,246,0.2)",
           }}
+          className="resume-card"
         >
-          <h3 style={{ color: "#3B82F6", marginBottom: "10px" }}>
+          <h3
+            style={{
+              color: "#3B82F6",
+              marginBottom: "15px",
+            }}
+          >
             Key Highlights
           </h3>
 
@@ -84,13 +117,28 @@ function Resume() {
               margin: 0,
               color: "#cbd5f5",
               fontSize: "14px",
+              lineHeight: "1.6",
             }}
           >
-            <li style={{ marginBottom: "10px" }}>🚀 Built impactful web applications</li>
-            <li style={{ marginBottom: "10px" }}>⚡ Optimized performance by 60%</li>
-            <li style={{ marginBottom: "10px" }}>👨‍🏫 Mentored junior developers</li>
-            <li style={{ marginBottom: "10px" }}>🏆 Delivered production-ready projects</li>
-            <li style={{ marginBottom: "10px" }}>📈 Improved application scalability</li>
+            <li style={{ marginBottom: "12px" }}>
+              ☕ Java & Object-Oriented Programming
+            </li>
+
+            <li style={{ marginBottom: "12px" }}>
+              🗄️ SQL, MySQL & Hibernate/JPA
+            </li>
+
+            <li style={{ marginBottom: "12px" }}>
+              ⚛️ React & JavaScript Development
+            </li>
+
+            <li style={{ marginBottom: "12px" }}>
+              🌐 HTML & CSS Responsive Web Design
+            </li>
+
+            <li style={{ marginBottom: "12px" }}>
+              🚀 Developed Multiple Real-World Projects
+            </li>
           </ul>
         </div>
       </div>
