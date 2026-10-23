@@ -16,7 +16,7 @@ function Skills() {
     Frontend: ["HTML", "CSS", "JavaScript", "React"],
     Backend: ["JDBC", "Hibernate"],
     Database: ["MySQL"],
-    Tools: ["GitHub", "VS Code"],
+    Tools: ["Eclipse", "GitHub", "VS Code"],
   };
 
   const icons = {
@@ -49,9 +49,14 @@ function Skills() {
 
     GitHub:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+      
+    Eclipse:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg",
 
     "VS Code":
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+
+    
   };
 
   return (

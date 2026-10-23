@@ -2,8 +2,7 @@ import React from "react";
 
 function Resume() {
   const resumeLink =
-    "https://drive.google.com/uc?export=download&id=1DSko85B6nHFcATy3AIapMDsYsZcU1gha";
-
+    "https://drive.google.com/file/d/1VoSQBxWg7qZtYoAu_HAVIGwShfdbctaD/view?usp=sharing"
   return (
     <section
       id="resume"

@@ -481,7 +481,7 @@ function Contact() {
               {/* LINKEDIN */}
 
               <a
-                href="https://www.linkedin.com/in/shaik-nagur-jani-76212b318/"
+                href="https://www.linkedin.com/in/nagur-jani-shaik-76212b318/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
